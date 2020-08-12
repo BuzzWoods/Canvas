@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <canvas id="myCanvas1" width="400" height="400"></canvas>
+  <canvas id="myCanvas2" width="1000" height="1000"></canvas>
+</body>
+<script>
+  /////////////////////线性渐变////////////////
+  // ctx.createLinearGradient(x0,y0,x1,y1)
+  // 返回一个CanvasGradient对象
+  // x0和y0是起点的横坐标和纵坐标，x1和y1是终点的横坐标和纵坐标。通过不同的坐标值，可以生成从上至下、从左到右的渐变等等。
+  var canvas = document.querySelector('#myCanvas')
+  var ctx = canvas.getContext('2d')
+
+  var gradient = ctx.createLinearGradient(0,0,200,0)
+  gradient.addColorStop(0,'#67C23A')
+  gradient.addColorStop(0.5,'white')
+  gradient.addColorStop(1,'#67C23A')
+  ctx.fillStyle = gradient
+  ctx.fillRect(10,10,200,100)
+
+  /////////////////////辐射渐变//////////////////
+  // ctx.createRadialGradient(x0, y0, r0, x1, y1, r1)
+  // createRadialGradient()方法接受六个参数，x0和y0是辐射起始的圆的圆心坐标，r0是起始圆的半径，x1和y1是辐射终止的圆的圆心坐标，r1是终止圆的半径。
+  var canvas1 = document.querySelector('#myCanvas1')
+  var ctx1 = canvas1.getContext('2d')
+
+  var gradient1 = ctx.createRadialGradient(200,200,20,200,200,50)
+  gradient1.addColorStop(0,'#E6A23C')
+  gradient1.addColorStop(1,'#ffffff')
+
+  ctx1.beginPath()
+  ctx1.arc(200,200,50,0,Math.PI*2)
+  ctx1.fillStyle = gradient1
+  ctx1.fill()
+
+  ///////////////////////图像填充/////////////////
+  var canvas2 = document.querySelector('#myCanvas2')
+  var ctx2 = canvas2.getContext('2d')
+
+  // 创建一个image对象
+  var img = new Image()
+  img.src = './a.jpg'
+  img.onload = function() {
+    var pattern = ctx.createPattern(img, 'repeat')
+    ctx2.fillStyle = pattern
+    ctx2.fillRect(0,0,1000,1000)
+  }
+</script>
+</html>

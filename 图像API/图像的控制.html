@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="500" height="500"></canvas>
+  <canvas id="myCanvas1" width="500" height="500"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('#myCanvas')
+  var ctx = canvas.getContext('2d')
+
+  ctx.rotate(Math.PI / 180 * 30); //旋转
+  ctx.scale(5,1)// 缩放 x缩放5倍,y缩放1倍
+  ctx.translate(50,50)// 缩放 x缩放5倍,y缩放1倍
+  ctx.fillRect(40,40,100,30); 
+
+  var canvas1 = document.querySelector('#myCanvas1')
+  var ctx1 = canvas1.getContext('2d')
+
+  ctx.transform(1,Math.PI)
+  ctx.fillRect(40,40,100,30); 
+</script>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="400px" height="400px"></canvas>
+  <canvas id="myCanvas1" width="400px" height="400px"></canvas>
+  <canvas id="myCanvas2" width="400px" height="400px"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('#myCanvas')
+  var ctx = canvas.getContext('2d')
+
+  ctx.fillText('10  086', 100, 100, 40)
+  // ctx.fillText(text,x,y,maxWidth)
+  // text：所要填充的字符串。
+  // x：文字起点的横坐标，单位像素。
+  // y：文字起点的纵坐标，单位像素。
+  // maxWidth：文本的最大像素宽度。该参数可选，如果省略，则表示宽度没有限制。如果文本实际长度超过这个参数指定的值，那么浏览器将尝试用较小的字体填充。
+  // fillText()不支持断行，只能重复调用fillText
+
+  ctx.font = 'bold 40px sans-serif' // 字体样式设置
+  ctx.strokeText('Hello world', 50, 50); // 绘制空心字符，参数与fillText一样
+
+
+
+
+  var canvas1 = document.querySelector('#myCanvas1')
+  var ctx1 = canvas1.getContext('2d')
+
+  // ctx1.textAlign = 'left';
+  // textAlign属性用来指定文本的对齐方式。它可以取以下几个值。
+  // 居中方式是相对于起点的
+  // left：左对齐
+  // right：右对齐
+  // center：居中
+  // start：默认值，起点对齐（从左到右的文本为左对齐，从右到左的文本为右对齐）。
+  // end：结尾对齐（从左到右的文本为右对齐，从右到左的文本为左对齐）
+
+  // ctx1.derection = 'ltr';
+  ctx1.textBaseLine = 'middle'
+  ctx1.font = '20px Arial';
+
+  ctx1.fillText('Hello world', 50, 50);
+
+
+  ///////////////////////////////获取字符串的信息////////////////////////////
+
+  var canvas2 = document.getElementById('myCanvas2');
+  var ctx2 = canvas2.getContext('2d');
+  var text1 = ctx2.measureText('Hello world'); // 接受一个字符串，返回一个TextMetrics对象，获取这个对象上面
+  //——字符串的信息
+
+  console.log(text1.width) // 55.175 获取宽度
+
+  // ctx2.font = 'Bold 20px Arial';
+  // text2.width // 107.78
+</script>
+
+</html>

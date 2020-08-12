@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="750" height="530"></canvas>
+  <canvas id="myCanvas1" width="750" height="530"></canvas>
+  <canvas id="myCanvas2" width="500" height="500"></canvas>
+  <canvas id="myCanvas3" width="500" height="500"></canvas>
+  <canvas id="myCanvas4" width="500" height="500"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('#myCanvas')
+  var ctx = canvas.getContext('2d')
+  var img = new Image()
+  img.src = 'pic1.jpg'
+
+  img.onload = function () {
+    // ctx.drawImage(img,0,0,400,250,0,0,500,417)
+    ctx.drawImage(img, 0, 0, 750, 250, 0, 0, 750, 250)
+    // ctx.drawImage(img,0,0)
+  }
+  // 三种格式:
+  // drawImage(img,dx,dy)
+  // drawImage(img,dx,dy,dWidth,dHeight)
+  // drawImage(img,sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight) 
+  // sWidth，sHeight图片展示自身内容大小的宽高,sx,sy,展示内容映射的坐标
+  // dWidth，dHeight图像填充画布的宽高,dx,dy
+
+  // 完整图片大小
+  var canvas1 = document.querySelector('#myCanvas1')
+  var ctx1 = canvas1.getContext('2d')
+
+  var image = new Image()
+  image.src = 'pic1.jpg'
+  image.onload = function DrawImageActualSize() {
+    canvas1.width = this.naturalWidth
+    canvas1.height = this.naturalHeight
+    ctx1.drawImage(this, 0, 0, this.naturalWidth, this.naturalHeight)
+  }
+
+  //////////////////////////////像素读写///////////////////////////
+  // getImageData() 获取图像数据
+  var imageData = ctx1.getImageData(0, 0, canvas1.width, canvas1.height)
+  console.log(imageData)
+
+  // putImageData() 放入图像数据
+  var canvas2 = document.querySelector('#myCanvas2')
+  var ctx2 = canvas2.getContext('2d')
+
+  ctx2.putImageData(imageData, 0, 0)
+
+  // createImageData() 方法用于生成一个空的ImageData对象，所有像素都是透明的黑色（即每个值都是0）。该方法有两种使用格式。
+  var canvas3 = document.querySelector('#myCanvas3')
+  var ctx3 = canvas3.getContext('2d')
+  // 两种格式
+  // ctx.createImageData(width, height) iamgeData对象的宽度与搞对，像素单位
+  // ctx.createImageData(imageData)  现有的imagedata对象，返回值僵尸这个对象的拷贝
+
+  var imageData = ctx3.createImageData(100, 100)
+  console.log(imageData)
+
+  //CanvasRenderingContext2D.save() 方法用于将画布的当前样式保存到堆栈，相当于在内存之中产生一个样式快照
+  //CanvasRenderingContext2D.restore() 方法将画布的样式恢复到上一个保存的快照，如果没有已保存的快照，则不产生任何效果。
+
+  //////////////////////////////canvans属性//////////////////////////////
+  // CanvasRenderingContext2D.canvas
+  // CanvasRenderingContext2D.canvas属性指向当前CanvasRenderingContext2D对象所在的<canvas>元素。该属性只读。
+
+  var canvas4 = document.getElementById('myCanvas4');
+  var ctx4 = canvas4.getContext('2d');
+  console.log(ctx4.canvas === canvas4 )// true
+</script>
+
+</html>

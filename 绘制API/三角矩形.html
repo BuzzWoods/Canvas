@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="500" height="500"></canvas>
+  <canvas id="myCanvas1" width="500" height="500"></canvas>
+  <canvas id="myCanvas2" width="500" height="500"></canvas>
+  <canvas id="myCanvas3" width="500" height="500"></canvas>
+  <canvas id="myCanvas4" width="500" height="500"></canvas>
+  <script>
+    var canvas = document.querySelector('#myCanvas')
+    var ctx = canvas.getContext('2d')
+
+    ctx.beginPath() //开始绘制 三角形
+    ctx.moveTo(100,100); //设置路径起点
+    ctx.lineTo(200,200); //使用直线连接到200,200
+    ctx.lineTo(100,200) //使用直线连接到100,200
+
+    ctx.fillStyle = 'red'
+    ctx.fill() //填充颜色
+    //或者
+    ctx.strokeStyle = 'red'
+    ctx.stroke()// 线条颜色
+
+    ctx.closePath() // 结束绘制
+
+    /////////////////////////////////////////////////////////////////////////////////
+
+    // 线型
+    var canvas1 = document.querySelector('#myCanvas1')
+    var ctx1 = canvas1.getContext('2d')
+
+    ctx1.beginPath() 
+    ctx1.moveTo(100,100); 
+    ctx1.lineTo(200,200); 
+    ctx1.lineTo(100,200);
+
+    ctx1.lineWidth = 2 // 线条宽度
+    ctx1.lineCap = 'round' //线条末端样式 butt（默认值，末端为矩形）、round（末端为圆形）、square（末端为突出的矩形，矩形宽度不变，高度为线条宽度的一半）
+    ctx1.lineJoin = 'miter' //指定线段交点的样式，有三个可能的值：round（交点为扇形）、bevel（交点为三角形底边）、miter（默认值，交点为菱形)
+    ctx1.miterLimit = '3'// 指定交点菱形的长度，默认为10。该属性只在lineJoin属性的值等于miter时有效。
+    ctx1.setLineDash([20,5]) // 数组，用于指定虚线里面线段和间距的长度
+    ctx1.strokeStyle = 'red'
+    ctx1.stroke()
+    
+    ctx.closePath()
+
+    /////////////////////////////////////////////////////////////////////////////////
+
+    // 矩形
+    var canvas2 = document.querySelector('#myCanvas2')
+    var ctx2 = canvas2.getContext('2d')
+
+    ctx2.rect(10,10,100,200) // x,y,width,height 绘制路径
+    ctx2.fillStyle = 'blue'
+    ctx2.fillRect(10,10,100,200) // 实心
+
+    var canvas3 = document.querySelector('#myCanvas3')
+    var ctx3 = canvas3.getContext('2d')
+
+    ctx3.rect(10,10,100,200) // x,y,width,height
+    ctx3.strokeStyle = 'green'
+    ctx3.stroke() // 线
+
+    var canvas4 = document.querySelector('#myCanvas4')
+    var ctx4 = canvas4.getContext('2d')
+
+    ctx4.fillStyle='black'
+    ctx4.fillRect(10,10,100,200) // x,y,width,height
+    ctx4.clearRect(1,15,50,50)// 挖空
+  </script>
+</body>
+</html>

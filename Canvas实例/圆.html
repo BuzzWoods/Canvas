@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('#myCanvas')
+  var ctx = canvas.getContext('2d')
+
+  var posX = 20
+  var posY = 20
+  var radius = 1
+  var endRad = 0
+  ctx.fillStyle = 'black'
+  ctx.fillRect(0, 0, canvas.width, canvas.height)
+  var timer = setInterval(function () {
+    endRad += 0.1
+
+    ctx.beginPath()
+    ctx.fillStyle = 'white'
+
+    ctx.arc(150, 150, 100, 0, Math.PI * endRad, false)
+    ctx.lineTo(150, 150)
+    ctx.closePath()
+    ctx.fill()
+
+    if(endRad >= 2){
+      clearInterval(timer)
+    }
+  }, 20)
+</script>
+
+</html>

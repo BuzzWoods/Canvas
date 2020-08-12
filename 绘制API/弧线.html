@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="400" height="400"></canvas>
+  <canvas id="myCanvas1" width="400" height="400"></canvas>
+  <canvas id="myCanvas2" width="400" height="400"></canvas>
+  <canvas id="myCanvas3" width="400" height="400"></canvas>
+  <canvas id="myCanvas4" width="400" height="200"></canvas>
+</body>
+<script>
+  // 弧形 
+  // ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise)
+  // arc()方法的x和y参数是圆心坐标，radius是半径，startAngle和endAngle则是扇形的起始角度和终止角度（以弧度表示），
+  // anticlockwise表示做图时应该逆时针画（true）还是顺时针画（false），这个参数用来控制扇形的方向（比如上半圆还是下半圆）。
+  var canvas = document.querySelector('#myCanvas')
+  var ctx = canvas.getContext('2d')
+
+  ctx.beginPath()
+  ctx.arc(200,200,100,0,Math.PI * 5/3 ,false) // 顺时针画圆
+  ctx.strokeStyle = 'blue'
+  ctx.stroke() // 弧线填充
+
+  var canvas1 = document.querySelector('#myCanvas1')
+  var ctx1 = canvas1.getContext('2d')
+
+  ctx1.beginPath()
+  ctx1.arc(200,200,100,0,-Math.PI * 5/3 ,true) // 逆时针画圆 逆时针的π和顺时针的π是相反值
+  // ctx.lineTo(200,200)
+  // ctx.fill()
+  ctx1.lineWidth = 10
+  ctx1.lineCap = 'round'
+  ctx1.strokeStyle = '#F56C6C'
+  ctx1.stroke()
+
+  var canvas2 = document.querySelector('#myCanvas2')
+  var ctx2 = canvas2.getContext('2d')
+
+
+  ///////////////////////////////切出的弧形///////////////////////////////
+  // arcTo(x1,y1, x2,y2, radius)
+  ctx2.beginPath()
+  ctx2.moveTo(0,0)  // 第一个点
+  ctx2.arcTo(200,200,100,0,10) // 切线画弧线，参数一二是第二个点，参数三四是第三个点
+  // 第一个点和第二个点连成的直线，第二个点和第三个点连成的直线相切的圆，形成的弧线
+  // 第五个参数是圆的半径
+  ctx2.lineTo(100,0)
+  // 2tx.fill()
+  ctx2.lineWidth = 2
+  // ctx2.lineCap = 'round'
+  ctx2.strokeStyle = '#F56C6C'
+  ctx2.stroke()
+
+  // 切出的四分之一圆周弧线
+  var canvas3 = document.querySelector('#myCanvas3')
+  var ctx3 = canvas3.getContext('2d')
+
+  ctx3.beginPath()
+  ctx3.moveTo(50,50)
+  ctx3.arcTo(150,50,150,150,100)
+  ctx3.lineWdith = 4
+  ctx3.strokeStyle = '#303133'
+  ctx3.stroke()
+
+  // 圆角矩形
+  var canvas4 = document.querySelector('#myCanvas4')
+  var ctx4 = canvas4.getContext('2d')
+
+  ctx4.beginPath()
+  ctx4.moveTo(50,0)
+  ctx4.lineTo(300,0)
+  ctx4.arcTo(400,0,400,50,50)
+  ctx4.lineTo(400,100)
+  ctx4.arcTo(400,200,350,200,50)
+  ctx4.lineTo(50,200)
+  ctx4.arcTo(0,200,0,150,50)
+  ctx4.lineTo(0,50)
+  ctx4.arcTo(0,0,50,0,50)
+
+  ctx4.lineWdith = 0
+  ctx4.strokeStyle = 'black'
+  ctx4.stroke()
+
+  ctx4.fillStyle = '#303133'
+  ctx4.fill()
+  ctx4.closePath()
+  
+  // 可以再一次打开新的绘制路径
+  ctx4.beginPath()
+  ctx4.arc(200,200,100,0,Math.PI * 5/3 ,false) // 顺时针画圆
+  ctx4.strokeStyle = 'white'
+  ctx4.setLineDash([15,4])
+  ctx4.stroke() // 弧线填充
+  
+</script>
+</html>
